@@ -1,0 +1,19 @@
+name: Call the shared workflow (test only)
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+jobs:
+  old:
+    uses: mavinash-dev/video-core-js-provenance-check/.github/workflows/core-old.yml@core-test
+    with:
+      file-to-upload: dist/umd/test.min.js
+    secrets: inherit
+  new:
+    uses: mavinash-dev/video-core-js-provenance-check/.github/workflows/core-new.yml@core-test
+    with:
+      file-to-upload: dist/umd/test.min.js
+    secrets: inherit
